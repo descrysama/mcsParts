@@ -5,7 +5,7 @@ from url_fournisseurs.utopya import utopya_urls;
 from single_links.utopya_single import utopya_single;
 import os;
 
-driver = login(initBrowser(True))
+driver = login(initBrowser(False))
 all_items = []
 csv_file = []
 
@@ -34,4 +34,4 @@ for row_number, row in enumerate(csv_file, start=2):
     worksheet.cell(row=row_number, column=2, value=row[1])
 
 # Save the workbook to a file
-workbook.save('src/output/utopya.xlsx')
+workbook.save('_output/utopya.xlsx')
