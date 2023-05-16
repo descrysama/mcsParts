@@ -4,7 +4,7 @@ from url_fournisseurs.utopya import utopya_urls;
 from single_links.utopya_single import utopya_single;
 
 
-driver = login(initBrowser(False))
+driver = login(initBrowser(True))
 all_items = []
 csv_file = []
 
