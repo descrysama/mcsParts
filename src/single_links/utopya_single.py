@@ -5,7 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC;
 import os;
 
 def utopya_single(driver: webdriver, url):
-    print(url)
     items = []
     no_sku_url = []
 
@@ -28,10 +27,7 @@ def utopya_single(driver: webdriver, url):
             if not full_price_check[1]:
                 full_price = full_price_check[0]
             item[1] = full_price
-            items.append(item)
-            
-
-    print(items)        
+            items.append(item)     
 
     return items
 
