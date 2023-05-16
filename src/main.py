@@ -11,7 +11,7 @@ csv_file = []
 file_path = '/var/www/html/output.xlsx'
 file_exists = os.path.isfile(file_path)
 if file_exists:
-    os.remove(file_exists)
+    os.remove(file_path)
 
 try: 
     for i, link in enumerate(utopya_urls) :
