@@ -15,7 +15,7 @@ file_exists = os.path.isfile(file_path)
 if file_exists:
     workbook = openpyxl.load_workbook(file_path)
     worksheet = workbook.active
-    worksheet.delete_rows(2, worksheet.max_row)
+    worksheet.delete_rows(1, worksheet.max_row)
     workbook.save(file_path)    
 
 try: 

@@ -42,7 +42,7 @@ def utopya_single(driver: webdriver, url):
     for row_number, row in enumerate(items, start=last_row):
         worksheet.cell(row=row_number, column=1, value=row[0])
         worksheet.cell(row=row_number, column=2, value=row[1])
-    workbook.save('/var/www/html/output.xlsx')
+    workbook.save(file_path)
 
     return
 
