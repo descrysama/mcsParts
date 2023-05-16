@@ -7,7 +7,9 @@ def initBrowser(headless):
     if(headless):
         options.add_argument('--headless')
     try:
+        print('initializing driver...')
         driver = webdriver.Firefox(service=Service(executable_path=GeckoDriverManager().install()), options=options)
+        print('driver successfully initialized')
         return driver
     except Exception as err:
         print(err)
