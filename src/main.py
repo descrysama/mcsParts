@@ -16,7 +16,7 @@ file_exists = os.path.isfile(file_path)
 
 if file_exists:
     config = configparser.ConfigParser()
-    config.read('config.cfg')
+    config.read('utopya/src/config.cfg')
 
     if config.has_section('CRASH') :
         if last_run_crash_check() == False:
