@@ -32,7 +32,6 @@ def retrieve_last_line():
     if file_exists:
         config = configparser.ConfigParser()
         config.read('config.cfg')
-        print('DEFAULT' in config)
         last_line = config.getint('DEFAULT', 'last_line')
         if 'DEFAULT' in config:
             if last_line > 0 :
@@ -52,7 +51,7 @@ def last_run_crash_check():
         config = configparser.ConfigParser()
         config.read('config.cfg')
 
-        last_run_crash = config.getint('CRASH', 'last_run_crash')
+        last_run_crash = config.getboolean('CRASH', 'last_run_crash')
         if(last_run_crash) :
             return True
         else : 

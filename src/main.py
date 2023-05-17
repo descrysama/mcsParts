@@ -11,22 +11,21 @@ driver = login(initBrowser(True))
 all_items = []
 csv_file = []
 
-file_path = 'output.xlsx'
+file_path = 'utopya/src/output.xlsx'
 file_exists = os.path.isfile(file_path)
 
 if file_exists:
     config = configparser.ConfigParser()
     config.read('config.cfg')
 
-    if config.has_section('DEFAULT') :
-        if retrieve_last_line() < 1 and last_run_crash_check() == False:
+    if config.has_section('CRASH') :
+        if last_run_crash_check() == False:
             workbook = openpyxl.load_workbook(file_path)
             worksheet = workbook.active
             worksheet.delete_rows(1, worksheet.max_row)
             workbook.save(file_path)    
 
 
-print('test:', retrieve_last_line())
 try: 
     for i, link in enumerate(utopya_urls[retrieve_last_line():], start=retrieve_last_line()):
         print("URL : ", i, " / ", len(utopya_urls) )
