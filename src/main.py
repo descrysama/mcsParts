@@ -11,7 +11,7 @@ driver = login(initBrowser(True))
 all_items = []
 csv_file = []
 
-file_path = 'utopya/src/output.xlsx'
+file_path = './utopya/src/output.xlsx'
 file_exists = os.path.isfile(file_path)
 
 if file_exists:
@@ -28,7 +28,7 @@ if file_exists:
 
 try: 
     for i, link in enumerate(utopya_urls[retrieve_last_line():], start=retrieve_last_line()):
-        print("URL : ", i, " / ", len(utopya_urls) )
+        print("Utopya : ", i, " / ", len(utopya_urls) )
         define_last_line(i)
         utopya_single(driver, link)
     define_last_line(0)
