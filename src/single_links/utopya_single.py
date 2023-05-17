@@ -30,7 +30,7 @@ def utopya_single(driver: webdriver, url):
             item[1] = full_price
             items.append(item)     
 
-    file_path = '/var/www/html/output.xlsx'
+    file_path = 'output.xlsx'
     file_exists = os.path.isfile(file_path)
     if file_exists:
         workbook = openpyxl.load_workbook(file_path)
