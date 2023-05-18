@@ -2,9 +2,10 @@ import os;
 import configparser;
 
 
-file_path = '/var/www/scripts/utopya/src/config.cfg'
+
 
 def define_last_line(last_line):
+    file_path = os.getenv("CONFIG_PATH")
     config = configparser.ConfigParser()
     config.read(file_path) 
     config['DEFAULT'] = {
@@ -16,6 +17,7 @@ def define_last_line(last_line):
         
 
 def define_last_run_crash(last_run_crash):
+    file_path = os.getenv("CONFIG_PATH")
     config = configparser.ConfigParser()
     config.read(file_path) 
     config['CRASH'] = {
@@ -27,6 +29,7 @@ def define_last_run_crash(last_run_crash):
 
 
 def retrieve_last_line():
+    file_path = os.getenv("CONFIG_PATH")
     file_exists = os.path.isfile(file_path)
 
     if file_exists:
@@ -44,7 +47,7 @@ def retrieve_last_line():
         return 0
 
 def last_run_crash_check():
-    
+    file_path = os.getenv("CONFIG_PATH")
     file_exists = os.path.isfile(file_path)
     if file_exists:
         config = configparser.ConfigParser()
@@ -61,6 +64,7 @@ def last_run_crash_check():
 
 
 def create_config_file():
+    file_path = os.getenv("CONFIG_PATH")
     file_exists = os.path.isfile(file_path)
     if not file_exists:
         config = configparser.ConfigParser()

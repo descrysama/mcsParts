@@ -7,13 +7,17 @@ import os;
 import json;
 import configparser;
 import openpyxl;
+from config_db import getUtopyaLinks
+from dotenv import load_dotenv
+load_dotenv()
+
+result = getUtopyaLinks()
 
 driver = login(initBrowser(True))
 all_items = []
 csv_file = []
-
-file_path = '/var/www/scripts/utopya/src/output.xlsx'
-file_config = '/var/www/scripts/config.cfg'
+file_path = os.getenv("OUTPUT_PATH")
+file_config = os.getenv("CONFIG_PATH")
 file_exists = os.path.isfile(file_path)
 
 if os.path.isfile(file_config) :
@@ -32,10 +36,10 @@ if os.path.isfile(file_config) :
     
 
 try: 
-    for i, link in enumerate(utopya_urls[retrieve_last_line():], start=retrieve_last_line()):
-        print(json.dumps({'UTOPYA': (str(i+1) + " / " + str(len(utopya_urls)))}))
+    for i, link in enumerate(result[retrieve_last_line():], start=retrieve_last_line()):
+        print(json.dumps({'UTOPYA': (str(i+1) + " / " + str(len(result)))}))
         define_last_line(i)
-        utopya_single(driver, link)
+        utopya_single(driver, result[0][0])
     define_last_line(0)
     define_last_run_crash(False)
 except (KeyboardInterrupt, Exception) as e:
