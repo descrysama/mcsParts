@@ -2,7 +2,7 @@ import os;
 import configparser;
 
 
-file_path = 'var/www/scripts/utopya/src/config.cfg'
+file_path = '/var/www/scripts/utopya/src/config.cfg'
 
 def define_last_line(last_line):
     config = configparser.ConfigParser()
