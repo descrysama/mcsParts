@@ -2,10 +2,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+import json;
 
 def login(driver: webdriver):
-    print('going into login process...')
-    driver.get("https://www.utopya.fr/customer/account/login/");
+    print(json.dumps({'UTOPYA': 'going into login process...'}))
+    driver.get("https://www.utopya.fr/customer/account/login/")
     div = driver.find_element(by="id", value="footer")
     hidden_div = div.find_elements(by="xpath", value=".//div[@style='display: none']")
     driver.execute_script("arguments[0].style.display = 'block';", hidden_div[1])
@@ -20,5 +21,4 @@ def login(driver: webdriver):
     form.find_element(by="id", value="send2").click();
     wait = WebDriverWait(driver, 10)
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".account-sidebar")))
-    print('login successful')
     return driver

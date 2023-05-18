@@ -69,7 +69,6 @@ def get_sku(items, no_sku_url, url, driver):
                 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "a.product-item-link.name")))
                 url = product.find_element(by="css selector", value="a.product-item-link.name")
                 no_sku_url.append(url.get_attribute("href"))
-                print("SKU not found placing it in the url array.")
             except:
                 get_sku()
 
@@ -80,6 +79,5 @@ def find_element_with_retry(items, no_sku_url, url, driver):
             WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "div.pricing")))
             return
         except:
-            print("Element not found, retrying...")
             get_sku(items, no_sku_url, url, driver)
             continue

@@ -2,8 +2,9 @@ from login import login;
 from webinit_ import initBrowser;
 from url_fournisseurs.utopya import utopya_urls;
 from single_links.utopya_single import utopya_single;
-from last_line import retrieve_last_line, define_last_line, last_run_crash_check, define_last_run_crash;
+from last_line import retrieve_last_line, define_last_line, last_run_crash_check, define_last_run_crash, create_config_file;
 import os;
+import json;
 import configparser;
 import openpyxl;
 
@@ -12,23 +13,27 @@ all_items = []
 csv_file = []
 
 file_path = './utopya/src/output.xlsx'
+file_config = './utopya/src/config.cfg'
 file_exists = os.path.isfile(file_path)
 
-if file_exists:
-    config = configparser.ConfigParser()
-    config.read('utopya/src/config.cfg')
+if os.path.isfile(file_config) :
+    create_config_file()
 
-    if config.has_section('CRASH') :
-        if last_run_crash_check() == False:
-            workbook = openpyxl.load_workbook(file_path)
-            worksheet = workbook.active
-            worksheet.delete_rows(1, worksheet.max_row)
-            workbook.save(file_path)    
+    if file_exists:
+        config = configparser.ConfigParser()
+        config.read(file_config)
 
+        if config.has_section('CRASH'):
+            if not last_run_crash_check():
+                workbook = openpyxl.load_workbook(file_path)
+                worksheet = workbook.active
+                worksheet.delete_rows(1, worksheet.max_row)
+                workbook.save(file_path) 
+    
 
 try: 
     for i, link in enumerate(utopya_urls[retrieve_last_line():], start=retrieve_last_line()):
-        print("Utopya : ", i, " / ", len(utopya_urls) )
+        print(json.dumps({'UTOPYA': (str(i+1) + " / " + str(len(utopya_urls)))}))
         define_last_line(i)
         utopya_single(driver, link)
     define_last_line(0)
