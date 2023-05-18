@@ -12,8 +12,8 @@ driver = login(initBrowser(True))
 all_items = []
 csv_file = []
 
-file_path = 'var/www/scripts/utopya/src/output.xlsx'
-file_config = 'var/www/scripts/config.cfg'
+file_path = '/var/www/scripts/utopya/src/output.xlsx'
+file_config = '/var/www/scripts/config.cfg'
 file_exists = os.path.isfile(file_path)
 
 if os.path.isfile(file_config) :
