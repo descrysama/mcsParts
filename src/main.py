@@ -39,7 +39,7 @@ try:
     for i, link in enumerate(result[retrieve_last_line():], start=retrieve_last_line()):
         print(json.dumps({'UTOPYA': (str(i+1) + " / " + str(len(result)))}))
         define_last_line(i)
-        utopya_single(driver, result[0][0])
+        utopya_single(driver, link[0])
     define_last_line(0)
     define_last_run_crash(False)
 except (KeyboardInterrupt, Exception) as e:
